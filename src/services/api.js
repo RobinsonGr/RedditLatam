@@ -10,9 +10,8 @@ export async function getCardsApi (sub) {
 
     
     const cardsData =  cardsDataRaw.data.children.map(({data}) => 
-    ({id: data.id, text: data.selftext, ups: data.ups, downs: data.downs, title: data.title}))
+    ({id: data.id, sub, text: data.selftext, ups: data.ups, downs: data.downs, title: data.title}))
 
-    console.log(cardsData)
     return cardsData
 
    } catch (err) {
