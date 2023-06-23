@@ -2,35 +2,25 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCardsApi } from "../services/api";
 
 
-
+/* this is the async thunk for get the posts/cards of every subrredit that belongs to that specific country*/
+/* this is dispatched when someone click in the country button for get the top posts */
 export const fetchCountry = createAsyncThunk (
-    'countriesSlice/fetchCards', async ({country, countryList}, thunkAPI) => {
+    'countriesSlice/fetchCards', async ({country, countryList}, thunkAPI) => { 
         
-        const allSubCards = []    
-    
+        const allSubCards = []  
+
         await Promise.all(
             countryList[country].subreddits.map(async({name}) => {
                 const cards = await getCardsApi(name);
                 allSubCards.push({sub: name, cards})
             })
-        )
+            )    
+                       
+        /* allSubCards is like [{sub: medellín, cards: [{medellíncard1}, {medellíncard2}]}, {sub: 'colombia, cards [...]}] */
 
         return {country, allSubCards}
     }
     )
-    
-    
-    
-    export const testThunk = (country, countryList) => {
-        const allSubCards = []
-        
-        countryList[country].subreddits.map(async({name}) => {
-            const cards = await getCardsApi(name);
-            allSubCards.push({sub: name, cards})
-        });
-        
-        return {country, allSubCards}
-    }
     
 
     const countriesSlice = createSlice( {
@@ -49,24 +39,21 @@ export const fetchCountry = createAsyncThunk (
         reducers: {},
         extraReducers: (builder) => {
             builder.addCase(fetchCountry.fulfilled, (state, action) => {
-                
+
                 const {country, allSubCards} = action.payload;
                 
                 state[country].subreddits.forEach(({name, posts}) => {
-                    const example = [{}, {}]
+                    
                     allSubCards.forEach(({sub, cards}) => {
-                        if(name === sub) {
-                                               
-                            cards.forEach(card => 
-                                {
-                                    console.log(posts)    
-                                    posts.forEach (post => {
-                                        if(card.id !== post.id){
-                                        posts.push(card)
-                                    }
-                                })}
-                                )
+                        if(name === sub) {                 
+                            if(posts.length > 0) {
+                                posts.forEach(post => {             
+                                    const newCards = cards.filter(card => card.id !== post.id)  
+                                    posts.push(...newCards)
+                                })
+                            }
                         };
+                        posts.push(...cards)          
                     })         
                 })
         })
@@ -75,11 +62,7 @@ export const fetchCountry = createAsyncThunk (
 
     export const selectCountries = (state) => {
        return state.countriesSlice
-      
     }
 
-    export const selectCountriesByValues = (state) => {
-        return Object.values(state.countriesSlice);
-    }
 
     export default countriesSlice.reducer;

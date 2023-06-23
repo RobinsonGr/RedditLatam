@@ -1,26 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/Header";
-import MenuCountry from "../components/MenuCountry";
-import MobileMenu from "../components/MobileMenu";
+import Cards from "../components/Cards/Cards.js";
+import Root from "../components/Root";
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 
-
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path="/" element={<Root/>} > 
+    <Route path="colombia" element={<Cards/>}/>
+  </Route>
+));
 
  function  App() {
 
-
-
-
-
   return (
-    
-      <>
-      <Header >
-      </Header>
-      
-      
-      <MenuCountry/> 
-      
-      </>
+    <RouterProvider router={router} /> 
   );
 }
 
