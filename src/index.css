@@ -6,17 +6,18 @@
  #root {
     display: grid;
     gap: 1rem;
-    
     grid-template-rows: auto 1fr;
     min-height: 100vh;
     background-color: rgb(241, 239, 239);
-    
  }
 
- #root > * {
+ #root > *:not(main) {
     background-color: #FFF;
     box-shadow: 0 0.6rem 0.9rem rgba(0, 0, 0, 0.2);
+ }
 
+ main {
+   margin-left: 0.7rem;
  }
 
  @media (min-width: 768px) {

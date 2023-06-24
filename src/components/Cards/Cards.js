@@ -6,19 +6,26 @@ import { selectCountries } from "../../features/contriesSlice"
 export default function Cards () {
     const countries = useSelector(selectCountries)
     const {pathname} = useLocation()
-    console.log(pathname.slice(1))
+    const {subreddits} = countries[pathname.slice(1)]
 
-    
+    const allCountryCards = []
+    subreddits.forEach(({posts}) => {
+        posts.forEach(card => allCountryCards.push(card))
+        })
+    const allCardsOrdened = allCountryCards.sort((a,b) => b.ups - a.ups)
 
-        const {subreddits} = countries[pathname.slice(1)]
-        console.log(subreddits)
-   
-    console.log(subreddits)
+    console.log(allCardsOrdened)
 
     return (
-    <>
-    
-   
-    </>
+        <ul className=""> 
+        {allCardsOrdened.map(card => 
+           (
+            <li> 
+            <Card card={card}></Card>
+            </li>
+            )
+        )        
+        }
+        </ul>
     )
 }

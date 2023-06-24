@@ -11,9 +11,7 @@ export default function MenuCountry ({isMobile}) {
      the map that will iteratere and need img and name only needs the values that are objs, no 
      not the whole property
     */
-   const countryValues = Object.values(countryListState)
-
-    
+    const countryValues = Object.values(countryListState)
 
     const handleClickCountry = (country) => {
         dispatch(fetchCountry({country, countryList: countryListState}))   

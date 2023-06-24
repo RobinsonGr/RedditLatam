@@ -14,8 +14,7 @@ export const fetchCountry = createAsyncThunk (
                 const cards = await getCardsApi(name);
                 allSubCards.push({sub: name, cards})
             })
-            )    
-                       
+            )                           
         /* allSubCards is like [{sub: medellín, cards: [{medellíncard1}, {medellíncard2}]}, {sub: 'colombia, cards [...]}] */
 
         return {country, allSubCards}
@@ -41,21 +40,18 @@ export const fetchCountry = createAsyncThunk (
             builder.addCase(fetchCountry.fulfilled, (state, action) => {
 
                 const {country, allSubCards} = action.payload;
-                
                 state[country].subreddits.forEach(({name, posts}) => {
-                    
                     allSubCards.forEach(({sub, cards}) => {
-                        if(name === sub) {                 
-                            if(posts.length > 0) {
-                                posts.forEach(post => {             
-                                    const newCards = cards.filter(card => card.id !== post.id)  
-                                    posts.push(...newCards)
-                                })
-                            }
-                        };
-                        posts.push(...cards)          
-                    })         
-                })
+
+                        if(name === sub) {      
+                            cards.forEach((card) => {
+                                if(!posts.some((post => post.id === card.id))) {
+                                    posts.push(card)
+                                }
+                            })                                                    
+                            };                          
+                        })         
+                    })
         })
     }
     })

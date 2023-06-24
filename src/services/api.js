@@ -8,8 +8,14 @@ export async function getCardsApi (sub) {
     
     const cardsDataRaw = await cardsResponse.json()
     const cardsData =  cardsDataRaw.data.children.map(({data}) => 
-    ({id: data.id, sub, text: data.selftext, ups: data.ups, downs: data.downs, title: data.title}))
+    ({id: data.id, 
+      url: data.url_overridden_by_dest, 
+      sub, text: data.selftext, 
+      ups: data.ups, 
+      downs: data.downs, 
+      title: data.title}))
     
+   console.log(cardsDataRaw)
     return cardsData
 
    } catch (err) {
