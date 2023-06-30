@@ -21,18 +21,34 @@ export const fetchCountry = createAsyncThunk (
     }
     )
     
-
     const countriesSlice = createSlice( {
         name: 'countriesSlice',
         initialState: {
-            colombia: {name: 'Colombia', 
-            img: 'https://i.ibb.co/PYm1N9X/colombia.png', 
-            subreddits: [{name: 'colombia', posts: [] }, {name: 'medellin', posts: []}] },
-            
-            argentina: {name: 'Argentina', img:'https://i.ibb.co/0Kxv5cd/argentina.png'},
-            mexico: {name: 'México', img: 'https://i.ibb.co/fdb5R0v/mexico.png'},
-            chile: {name: 'Chile', img: 'https://i.ibb.co/MZwVvGd/chile.png'},
-            uruguay: {name: 'Uruguay', img: 'https://i.ibb.co/RvcttWk/uruguay.png'},
+            colombia: {
+                name: 'Colombia', 
+                img: 'https://i.ibb.co/PYm1N9X/colombia.png', 
+                subreddits: [
+                    {name: 'colombia', posts: [] }, 
+                    {name: 'medellin', posts: []}]
+                },  
+            argentina: {
+                name: 'Argentina', 
+                img:'https://i.ibb.co/0Kxv5cd/argentina.png',
+                subreddits: [
+                    {name: 'argentina', posts: [] }, 
+                    {name: 'ArgentinaBenderStyle', posts: []},
+                    {name: 'Cordoba', posts: []},
+                    {name: 'BuenosAires', posts: []},
+                ]
+            },
+            mexico: {
+                name: 
+                'México', 
+                img: 'https://i.ibb.co/fdb5R0v/mexico.png',
+                subreddits: [{name: 'mex', posts: []}]
+            },
+            // chile: {name: 'Chile', img: 'https://i.ibb.co/MZwVvGd/chile.png'},
+            // uruguay: {name: 'Uruguay', img: 'https://i.ibb.co/RvcttWk/uruguay.png'},
         },
         
         reducers: {},
@@ -40,9 +56,10 @@ export const fetchCountry = createAsyncThunk (
             builder.addCase(fetchCountry.fulfilled, (state, action) => {
 
                 const {country, allSubCards} = action.payload;
+                /*Select all subreddit of that country*/ 
                 state[country].subreddits.forEach(({name, posts}) => {
                     allSubCards.forEach(({sub, cards}) => {
-
+                        /*add cards in that subreddit and it'll add those that are not dupliated  */
                         if(name === sub) {      
                             cards.forEach((card) => {
                                 if(!posts.some((post => post.id === card.id))) {

@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>reddit arrow green</title>
+	<defs>
+		<image  width="38" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAABACAMAAABBTvXbAAAAAXNSR0IB2cksfwAAAPNQTFRFAAAAlmiimGuhl2ygl2yhmGyhl2uhmXCjl2yhmH+lmIClmGugknujj9C3mNe5mIGmdcGud82xk925mGugcsqvd82wkt26k2ucdsyxkn2kdcKul9i6mIOmlGqfmGygkX2jl3CilHGhZ8KmccmvlnGil9a5mIGlknyjXbydm26mdsKukX2kX72ed8ywmISml2ygmGugkt25mNm5kH6kdMSukX6kdcOul2egkW2jl9e5mIKmmWyfmGuhhZyodsywjNm3l6eulm2hhJ6pdcSukH+kg6Cpl2ygmWqgmWuglHejmGuhl22fl2ygl2ugl2ygmGuhmGugbQ0CYgAAAFF0Uk5TABbMy9L/1xnU///T/////////9j///8a//////8Y1v////////////8X///////Z1f///////xsO//8o/f////9i//////5pZP/aW6rFw8TC4sdd7wAAAVpJREFUeJzt0ltbgkAQBuClGqDszIaKKWYHtbIykywpO2dp6f//Nc2yboAr4o1d9DB3sO8zzDcLIeOlLCwq0ktZLQGoWqzSYXkF9Jh+SgpW19Y3Yvoxtbm1jc6Y4jxF6Y451Y2UcOnI6bmiNBPtUGUtSoXL7U50IRXp8gWwUVnFvdI+pQdFK2MeHkEhP6ZUrsoAlRKlAGXu1JCr6p46PgFkp4xhmpqZO4PzwHerF0KpyCqMpWTnK0MTzNthrX7pO1QNVFdNtnnB2K6zVsAx5Qjls6C7JqRlQBOVY/P0PvN25NTqN7dgtEjbhTtUjVH2AGNbajj3nQdw24Q8uvD0/CImDTJ2M7bzCm/v7KHrwsfvfxNiRFPxyO3yB+z3KbYTZiwf78Wq10f1BfAtMZLu98LXOgAYyiyi/phNjiBVEmGuLIkw19lmZEmEuc42I/tHEXhFMh5hwNVw7PAHjUROAJikfhYAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="13" y="0"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="63" height="63">
+	<title>redditlatam-arrow-green-svg</title>
+	<defs>
+		<image  width="52" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAABACAMAAABiFaQOAAAAAXNSR0IB2cksfwAAAKtQTFRFAAAAlmiimGuhl2ygl2yhmGyhl2uhmXCjl2yhmH+lmIClmGugknuj8zAwmIGm4gcHmGugk2uckn2kmIOmyhgWlGqfmGygkX2jl3CilHGhywAAzBEPlnGimIGlknyjm26mkX2kmISml2ygmGugkH6kkX6kl2egkW2jm3CRmIKmmWyfmGuhlm2hkH+kl2ygmWqgmWuglHejmGuhl22fl2ygl2ugl2ygmGuhmGugOVzdNgAAADl0Uk5TABbMy9L/1xnU///T/////9ga////GNb//////////xf//9nV//8bDv//KP1i//5pZP/aW6rFw8TCjdE6XAAAATZJREFUeJzt021XgjAYBmCobqCMhqZiVGpFWdKLpaX//5fFc7bJ2ybjW6ez++t2nWfcG46ji3t07GoXdeYE8PyOJsDpGYJOs9wezsPwotMsMoyRiowVN92UNEL1jUwgjbnKzYCxQl0aqL0ZmqvRGDHtnVwl14zdTEjdYjw6aDxupkCSDBkw5co7oGYBN3NIxO/rDvfaE84epPEk6rWpwkS+RG6Lyk1K5pFegUR00wO9qpgCldVT3SwiPJOJeb8FErcQhi+IFjW0zEAmFe2WEN1DSgrZsj7qldSbPHkZ0SuJWYj3j+ZHrTJ87v+ECnJ8L1/KVqr68llfsqEqopZUcyjrTW6+gZ8GcvqbtdrwbIFdExnlzyJ1ES2xRYjYIkRsESK2CBFbhIgtQuQ/F8FjiHgRW252yi2/S4w28bNTkOEAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="img1" href="#img1" x="5" y="0"/>
+</svg>

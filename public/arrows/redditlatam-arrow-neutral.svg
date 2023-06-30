@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="63" height="63">
+	<title>icons8-up-arrow-64</title>
+	<defs>
+		<image  width="38" height="64" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAABACAMAAABBTvXbAAAAAXNSR0IB2cksfwAAAPZQTFRFAAAAlmiimGuhl2ygl2yhmGyhl2uhmXCjl2yhmH+lmIClmGugknujj9C3mNe5mIGmdcGud82xk925mGugcsqvd82wkt26k2ucdsyxkn2kdcKul9i6mIOmlGqfmGygkX2jl3CilHGhZ8KmccmvlnGil9a5mIGlknyjXbydm26mdsKukX2kX72ed8ywmISml2ygmGugkt25mNm5kH6kdMSukX6kdcOul2egkW2jkX6kl9e5mIKmmWyfmGuhhZyodsywjNm3l6eulm2hhJ6pdcSukH+kg6Cpl2ygmWqgmWuglHejmGuhl22fl2ygl2ugl2ygmGuhmGugQfld4wAAAFJ0Uk5TABbMy9L/1xnU///T/wAA/wAAANgAAAAaAP8AAP8Y1v///wAA/wD//wAXAP8AAP/Z1QAA/wD/ABsO4AD/KP0AAAAAYgAA/wD+aWT/2luqxcPEwqzF+SgAAAFaSURBVHic7dJbW4JAEAbgpRqg7MyGinnIDmpFZRZZSXYuS0v//59plnXjJOINXfQwd7DvM8w3CyHBkubmpdDLsFoAkJVYpcLiEqgx/aQMLK+srsX0Y2p9YxOdNsU5itItfaobK+GykdNzRWku2qHKG5QKV9ie6Hwq0hVLUEZlVHaqu5TuVYycvn8ApWJAyVzVAOpVSgFq3Mk+11AddXgEyI4ZwzSmXjiBU893G2dCycjqjGXCzlWaIpizQ7N57jpULVQXl2zzgrFd5w2PY8oSymVed0VIW4NrVFaZp3eZsyPLbN7cgtYmHRvuULXG2T2Mballde8fwO4Q8mjD0/OLmNTL2M2UrVd4e2cPPRs+fv8bHyOKjEd2jz9gv0+xHT9j+XgvVv0Bqi+A7xAj2UHff61DgFGYRdQfs8kRQpVGSJSlERKdbUaWRkh0thnZP4rAK5LxCEOuRoHDH/uOTkvI33K4AAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="13" y="0"/>
+</svg>
