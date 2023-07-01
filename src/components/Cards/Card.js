@@ -6,8 +6,8 @@ import CommentsList from "../Comments/CommentsList";
 
 
 export default function Card ({card}) {
-    const [vote, setVote] = useState('')
-    const [commentsBox, setCommentsBox] = useState(null)
+    const [vote, setVote] = useState(null)
+    const [commentsBox, setCommentsBox] = useState(false)
  
     const commentsList = useSelector(commentsSelector)
     const dispatch = useDispatch();
@@ -35,27 +35,29 @@ export default function Card ({card}) {
         (vote == 'up' || vote == null) ? setVote('down') : setVote(null)
     }
 
+    console.log(card)
 
 
-    return (
-        /*arrows up and down */
+    return (       
+        <div className="card overflow-hidden mb-4 p-3 rounded-lg bg-white "> 
 
-        <div className="card mb-4 p-3 rounded-lg bg-white "> 
-
+            {/*Arrows */}
             <span className="absolute top-20 w-20 h-7 text-center bg-green-500 text-white">{`r/${card.sub}`}</span>
             <div className="col-span-1">
                 <img 
-                className="w-11"
+                className="w-11 h-9"
                 onClick={handleArrowUp} 
                 src={ vote === 'up' ? arrows.up : arrows.neutral}/>
                 <p>{card.ups}</p>
-                <img className="w-11 transform scale-y-[-1]" 
+                <img className="w-11 h-9 transform scale-y-[-1]" 
                 onClick={handleArrowDown} 
                 src={ vote == 'down' ? arrows.down : arrows.neutral} />
             </div>
 
-            <div> 
-                <h1 className="text-lg font-bold">{card.title}</h1>
+             {/* Card with title, img*/}
+            <div className="grid grid-rows-1"> 
+                
+                <h1 className="text-base font-bold">{card.title}</h1>
                 {
                     Boolean(card.url) && (
                         <img className='w-full h-auto' src={card.url}>
@@ -66,17 +68,20 @@ export default function Card ({card}) {
                     <p>{card.text}</p>
                 )}
                 <hr/>
-                {/* {
+                {
                     Boolean(currentComments) && (
                         <div> 
-                        <span>💬</span>
+                        <span onClick={() => setCommentsBox(!commentsBox)}>💬</span>
                         <p>{currentComments.length}</p>
-
-                        <p>here are the comments</p>
-                        <CommentsList currentComments={currentComments}/>
+                        {
+                            commentsBox && (
+                                <CommentsList currentComments={currentComments}/>
+                            )
+                        }
+                        
                         </div>
                     )
-                } */}
+                } 
             </div>
         </div>
     )

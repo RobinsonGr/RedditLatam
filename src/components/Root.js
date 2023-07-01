@@ -5,7 +5,7 @@ import MenuCountry from "../components/MenuCountry";
 export default function Root () {
     return (
 
-     <>
+    <>
         <Header/>
         <main>
             <Outlet/>
