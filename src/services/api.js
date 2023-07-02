@@ -9,13 +9,11 @@ export async function getCardsApi (sub) {
       url: data.url_overridden_by_dest
        && data.url_overridden_by_dest.includes('i.redd.it') ? data.url_overridden_by_dest : undefined, 
       sub, text: data.selftext, 
-      ups: data.ups, 
-      url2: data.url,
-      downs: data.downs, 
+      ups: data.ups,  
+      author: data.author,
       title: data.title}))
 
       return cardsData
-
 
    } catch (err) {
     return err

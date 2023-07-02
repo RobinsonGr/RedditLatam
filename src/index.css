@@ -4,9 +4,11 @@
 
 
  #root {
-   min-width: 350px;
-   gap: 1rem; 
-    background-color: rgb(241, 239, 239);
+   display: grid;
+   grid-template-columns: minmax(0, 1fr);
+   gap: 1rem;
+   width: 100%;
+   background-color: rgb(241, 239, 239);
  }
 
  #root > *:not(main) {
@@ -16,22 +18,30 @@
 
  main {
    width: 100%;
-   
+   padding: 0.5rem;
    margin-left: 0.7rem;
+
  }
 
  .card {
-   max-width: 100%;
    display: grid;
+   grid-template-columns: auto minmax(0, 1fr); 
+   /*grid template was generate a bug when a image is clicked,, a solution was to set 
+   minmax format instead of simple 1fr in this case**/ 
+   max-width: 100%;
    gap: 1rem;
    padding-top: 2rem;
-   grid-template-columns: auto 1fr;
    
+ }
+
+ .activeNav {
+  background-color: aqua;
  }
 
  @media (min-width: 768px) {
    #root {
       display: grid;
+      gap: 2rem; 
       grid-template-columns: 3fr 1fr;
    }
    .main {

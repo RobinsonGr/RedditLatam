@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { fetchCountry, selectCountries } from "../features/contriesSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -19,19 +19,24 @@ export default function MenuCountry ({isMobile}) {
 
 
     return (
-        <div className={`${isMobile ? '' : 'hidden'} md:flex flex-col col-start-2 p-4 pl-7 rounded-lg text-neutral-500`}>
+        <div className={`${isMobile ? '' : 'hidden'} md:flex flex-col col-start-2 py-2 pl-4 rounded-lg text-neutral-500`}>
             <h2 className="mb-5 text-2xl font-bold">Países</h2>
             <ul>
         {countryValues.map(({name, img}) => 
         
-        <Link to={`/${name.toLowerCase()}`}>
-            <li onClick={() => handleClickCountry(name.toLowerCase())}  key={name} className="flex items-center mb-8">
+        <NavLink 
+        className={({isActive}) => isActive ? 'activeNav' : ""} 
+        to={`/${name.toLowerCase()}`}>
+            <li   
+            onClick={() => handleClickCountry(name.toLowerCase())}  
+            key={name} 
+            className="flex items-center mb-8 p-3 hover:bg-gray-100">
                 <img className='h-10 w-10' src={img} alt={`Bandera de ${name}`}></img>              
                 <span className="ml-3 text-lg font-bold">
                 {name}
                 </span>
             </li>
-        </Link>
+        </NavLink>
         )}
         </ul>
         </div> 

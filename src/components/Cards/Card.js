@@ -3,6 +3,7 @@ import { commentsSelector } from "../../features/commentsSlice";
 import { useEffect, useState } from "react"
 import { fetchComments } from "../../features/commentsSlice"
 import CommentsList from "../Comments/CommentsList";
+import { data } from "autoprefixer";
 
 
 export default function Card ({card}) {
@@ -16,6 +17,7 @@ export default function Card ({card}) {
         down: '/arrows/redditlatam-arrow-red.svg',
         neutral: '/arrows/redditlatam-arrow-neutral.svg',
     }
+    
 
     /* get the comments of the actual card,
      I've used useEffect because in the normal behiavor, there are many
@@ -35,27 +37,34 @@ export default function Card ({card}) {
         (vote == 'up' || vote == null) ? setVote('down') : setVote(null)
     }
 
-    console.log(card)
-
 
     return (       
-        <div className="card overflow-hidden mb-4 p-3 rounded-lg bg-white "> 
+        
+        <div className="card relative mb-4 p-3 rounded-lg bg-white "> 
 
+            <span className="absolute left-1 -top-3 w-auto h-auto text-center bg-green-500 text-white">
             {/*Arrows */}
-            <span className="absolute top-20 w-20 h-7 text-center bg-green-500 text-white">{`r/${card.sub}`}</span>
-            <div className="col-span-1">
+                {`r/${card.sub}`}</span>
+                
+            <section className="justify col-span-1">
                 <img 
                 className="w-11 h-9"
                 onClick={handleArrowUp} 
                 src={ vote === 'up' ? arrows.up : arrows.neutral}/>
-                <p>{card.ups}</p>
+
+                <p 
+                className={`font-bold text-center
+                ${vote == 'up' ? 'text-green-600' : vote == 'down' ? 'text-red-600' : null }`}>
+
+                {card.ups}</p>
+
                 <img className="w-11 h-9 transform scale-y-[-1]" 
                 onClick={handleArrowDown} 
                 src={ vote == 'down' ? arrows.down : arrows.neutral} />
-            </div>
+            </section>
 
-             {/* Card with title, img*/}
-            <div className="grid grid-rows-1"> 
+             {/* Card with title, img -- grid template was generate a bug when a image is clicked */}
+            <section> 
                 
                 <h1 className="text-base font-bold">{card.title}</h1>
                 {
@@ -64,25 +73,30 @@ export default function Card ({card}) {
                         </img>
                     )
                 }
-                {card.text.length > 40 && (
-                    <p>{card.text}</p>
-                )}
-                <hr/>
+                
+                <p>{card.text}</p>
+            
+                <hr className="my-3"/>
+                <div className="flex justify-between flex-wrap"> 
+                    <p className="font-semibold text-green-latam">{card.author}</p>
+                    {
+                        Boolean(currentComments) && (
+                            <div className="flex" onClick={() => setCommentsBox(!commentsBox)}>  
+                            <span className="mr-1" >💬</span>
+                            <p className="text-gray-500">{currentComments.length}</p>
+                            </div>                     
+                           
+                        )
+                    } 
+                </div>
                 {
-                    Boolean(currentComments) && (
-                        <div> 
-                        <span onClick={() => setCommentsBox(!commentsBox)}>💬</span>
-                        <p>{currentComments.length}</p>
-                        {
-                            commentsBox && (
-                                <CommentsList currentComments={currentComments}/>
-                            )
-                        }
-                        
-                        </div>
+                     commentsBox && (
+                        <CommentsList currentComments={currentComments}/>
                     )
-                } 
-            </div>
+                }
+
+                
+            </section>
         </div>
     )
 }

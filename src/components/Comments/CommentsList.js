@@ -3,13 +3,14 @@ import Comment from "./Comment"
 
 export default function CommentsList ({currentComments}) {
 
-    if(!currentComments) {
-        return <p>{":("}</p>
-    }
+    const commentsClean = currentComments.filter(commentData => !commentData.comment?.includes('https'))
+
+    console.log(commentsClean)
+
     return (
-    <div className="m-w-4/5">
+    <div className="m-w-4/5 mt-4">
         <ul className="m-w-full">
-            {currentComments.map(commentData => {
+            {commentsClean.map(commentData => {
                return (
                 <li className="mb-4">
                 <Comment commentData={commentData}/>
