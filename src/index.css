@@ -34,9 +34,10 @@
    
  }
 
- .activeNav {
-  background-color: aqua;
+ .activeNav > li {
+  background-color: rgba(87, 225, 142, 0.8) !important
  }
+
 
  @media (min-width: 768px) {
    #root {

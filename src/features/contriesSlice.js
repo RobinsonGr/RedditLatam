@@ -29,23 +29,41 @@ export const fetchCountry = createAsyncThunk (
                 img: 'https://i.ibb.co/PYm1N9X/colombia.png', 
                 subreddits: [
                     {name: 'colombia', posts: [] }, 
-                    {name: 'medellin', posts: []}]
+                    {name: 'medellin', posts: []},
+                    {name: 'Bogota', posts: []}
+                ]
                 },  
             argentina: {
                 name: 'Argentina', 
                 img:'https://i.ibb.co/0Kxv5cd/argentina.png',
                 subreddits: [
-                    {name: 'argentina', posts: [] }, 
+                    {name: 'argentina', posts: [] },
+                    {name: 'Rosario', posts: [] }, 
                     {name: 'ArgentinaBenderStyle', posts: []},
                     {name: 'Cordoba', posts: []},
                     {name: 'BuenosAires', posts: []},
+                    {name: 'RepublicaArgentina', posts: []},
+                    {name: 'AskArgentina', posts: []},
+                    {name: 'dankgentina', posts: []},
+                    {name: 'AskArgentina', posts: []},
                 ]
             },
             mexico: {
                 name: 
-                'México', 
+                'Mexico', /*without tilde to avoid problems with the routing */
                 img: 'https://i.ibb.co/fdb5R0v/mexico.png',
-                subreddits: [{name: 'mex', posts: []}]
+                subreddits: [
+                    {name: 'Monterrey', posts: []},
+                    {name: 'Puebla', posts: []},
+                    {name: 'mexico', posts: []},
+                    {name: 'MexicoCity', posts: []},
+                    {name: 'SomosMexico', posts: []},
+                    {name: 'Mexico_News', posts: []},
+                    {name: 'MexicoFinanciero', posts: []},
+                    {name: 'MemesMexico', posts: []},
+                    {name: 'Guadalajara', posts: []},
+                    {name: 'tijuana', posts: []}
+            ]
             },
             // chile: {name: 'Chile', img: 'https://i.ibb.co/MZwVvGd/chile.png'},
             // uruguay: {name: 'Uruguay', img: 'https://i.ibb.co/RvcttWk/uruguay.png'},
@@ -61,8 +79,12 @@ export const fetchCountry = createAsyncThunk (
                     allSubCards.forEach(({sub, cards}) => {
                         /*add cards in that subreddit and it'll add those that are not dupliated  */
                         if(name === sub) {      
-                            cards.forEach((card) => {
-                                if(!posts.some((post => post.id === card.id))) {
+                            cards?.forEach((card) => {
+                                /*filter the cards that are no equal if there are actualcards
+                                and those that doesn't include
+                                a url array in the text property (this causes overflow)*/ 
+                                if(!posts.some((post => post.id === card.id)) && 
+                                  !card.text.includes('https')) {
                                     posts.push(card)
                                 }
                             })                                                    

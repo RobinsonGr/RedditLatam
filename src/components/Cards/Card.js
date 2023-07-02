@@ -56,7 +56,7 @@ export default function Card ({card}) {
                 className={`font-bold text-center
                 ${vote == 'up' ? 'text-green-600' : vote == 'down' ? 'text-red-600' : null }`}>
 
-                {card.ups}</p>
+                {vote == 'up' ? (card.ups + 1) : vote == 'down' ? (card.ups - 1) : (card.ups)}</p>
 
                 <img className="w-11 h-9 transform scale-y-[-1]" 
                 onClick={handleArrowDown} 
