@@ -15,7 +15,7 @@ export default function Cards () {
         posts.forEach(card => allCountryCards.push(card))
         })
 
-     /*Ordened by upvotes */   
+     /*Ordened by upvotes*/   
     const allCardsOrdened = allCountryCards.sort((a,b) => b.ups - a.ups)
     .slice(0,20)
     .filter(cardData => !cardData.text.includes('https'))
