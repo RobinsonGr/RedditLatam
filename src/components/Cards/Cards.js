@@ -1,15 +1,31 @@
 import Card from "./Card"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useLocation } from "react-router-dom"
-import { selectCountries } from "../../features/contriesSlice"
-
+import { selectCountries, fetchCountry } from "../../features/contriesSlice"
+import { selectIsLoading } from "../../features/contriesSlice"
+import { CardSkeleton } from "./CardSkeleton"
+import { useEffect } from "react"
 
 export default function Cards () {
-    const countries = useSelector(selectCountries);
+    const actualCountriesList = useSelector(selectCountries);
+    const isPending = useSelector(selectIsLoading);
+    const dispatch = useDispatch();
     const {pathname} = useLocation();
-    const actualCountry = pathname.slice(1) /*get the string without / */
-    const {subreddits} = countries[actualCountry]
 
+    /*get the string name country without '/' and set mexico as default country */
+    const actualCountry = pathname.length >= 5  ? pathname.slice(1) : 'argentina' 
+
+    /* Dispath and store all data from that country*/
+    /*I've used useEffect because in the normal behiavor, there are many
+    re-renders and here with useEffect avoid duplicateds and
+    unnecesary dispatch's, this only will work in the initial first render (componentdidmountend)*/ 
+
+    useEffect(() => {
+        dispatch(fetchCountry({country: actualCountry, countryList: actualCountriesList}))
+    }, [actualCountry])
+    
+    /* All cards of the different subreddit of the same country in one place */
+    const {subreddits} = actualCountriesList[actualCountry]
     const allCountryCards = []
     subreddits.forEach(({posts}) => {
         posts.forEach(card => allCountryCards.push(card))
@@ -19,14 +35,23 @@ export default function Cards () {
     const allCardsOrdened = allCountryCards.sort((a,b) => b.ups - a.ups)
     .slice(0,20)
     .filter(cardData => !cardData.text.includes('https'))
- 
 
+   return isPending ? (
+   <>
+         {
+            /*Showing skeleton loading 5 times (less that the original cards
+                for avoid the saturation)  */
+        [...Array(5)].map((_, i) => (
+            <CardSkeleton key={i}/>
+        ))
+    }
+   </>
     
-    return (
-        <ul className=""> 
+   ) : (
+        <ul> 
         {allCardsOrdened.map(card => 
            (
-            <li> 
+            <li key={card.id}> 
                 <Card card={card}></Card>
             </li>
             )

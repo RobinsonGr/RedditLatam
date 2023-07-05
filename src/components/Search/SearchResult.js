@@ -13,7 +13,7 @@ export default function SeachResult () {
     /*search that query in the title or text of the card*/
     const matchQueryCards = []
      Object.values(countries).forEach(({subreddits}) => {
-        subreddits.map(subreddit => {
+        subreddits.forEach(subreddit => {
             subreddit.posts?.forEach(post => {
                 if(post.title.includes(currentQuery) || post.text.includes(currentQuery)) {
                     matchQueryCards.push(post)

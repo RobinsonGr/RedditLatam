@@ -3,7 +3,6 @@ import { commentsSelector } from "../../features/commentsSlice";
 import { useEffect, useState } from "react"
 import { fetchComments } from "../../features/commentsSlice"
 import CommentsList from "../Comments/CommentsList";
-import { data } from "autoprefixer";
 
 
 export default function Card ({card}) {
@@ -46,7 +45,7 @@ export default function Card ({card}) {
             {/*Arrows */}
                 {`r/${card.sub}`}</span>
                 
-            <section className="justify col-span-1">
+            <section className="col-span-1 cursor-pointer">
                 <img 
                 className="w-11 h-9"
                 onClick={handleArrowUp} 

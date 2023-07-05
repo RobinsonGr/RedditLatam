@@ -5,14 +5,12 @@ export default function CommentsList ({currentComments}) {
 
     const commentsClean = currentComments.filter(commentData => !commentData.comment?.includes('https'))
 
-    console.log(commentsClean)
-
     return (
     <div className="m-w-4/5 mt-4">
         <ul className="m-w-full">
             {commentsClean.map(commentData => {
                return (
-                <li className="mb-4">
+                <li key={commentData.comment} className="mb-4">
                 <Comment commentData={commentData}/>
                {
                    /*using recursive component for nested comments (replies)*/
