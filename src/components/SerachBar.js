@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar ({isMobile}) {
-
     const [inputSearch, setInputSearch] = useState('');
 
     const navigate = useNavigate();

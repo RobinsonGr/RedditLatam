@@ -7,14 +7,22 @@ import { getCardsApi } from "../services/api";
 export const fetchCountry = createAsyncThunk (
     'countriesSlice/fetchCards', async ({country, countryList}, thunkAPI) => { 
         
-        const allSubCards = []  
+        const promises = countryList[country].subreddits.map(async({name, posts}) => {
 
-        await Promise.all(
-            countryList[country].subreddits.map(async({name}) => {
-                const cards = await getCardsApi(name);
-                allSubCards.push({sub: name, cards})
-            })
-            )                           
+            const cardsRetrieve = await getCardsApi(name);
+              /*some calls get rejected. So there is validation if they're arrays or not*/
+
+            if(Array.isArray(cardsRetrieve)) {
+                return {sub: name, cards: [...cardsRetrieve]}
+            }
+            return []
+            
+        })        
+
+        const allSubCards =  await Promise.all(promises)
+
+
+        console.log(allSubCards)
         /* allSubCards is like [{sub: medellín, cards: [{medellíncard1}, {medellíncard2}]}, {sub: 'colombia, cards [...]}] */
 
         return {country, allSubCards}

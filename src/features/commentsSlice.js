@@ -5,6 +5,7 @@ export const fetchComments = createAsyncThunk('commentsSlice/getComments', async
 
     const allComments = await getComments({sub, card})
     return {card, comments: allComments}
+
 })
 
 const commentsSlice = createSlice({
