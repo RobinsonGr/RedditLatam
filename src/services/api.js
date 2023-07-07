@@ -12,6 +12,9 @@ export async function getCardsApi (sub) {
       ups: data.ups,  
       author: data.author,
       title: data.title}))
+      
+      console.log(cardsDataRaw)
+
       return cardsData
 
 

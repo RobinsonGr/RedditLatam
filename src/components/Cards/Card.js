@@ -22,11 +22,12 @@ export default function Card ({card}) {
      I've used useEffect because in the normal behiavor, there are many
     re-renders and here with useEffect avoid duplicateds and
     unnecesary dispatch's, this only will work in the initial first render (componentdidmountend)*/
-    useEffect(() => {
-        dispatch(fetchComments({sub: card.sub, card: card.id}))
-    }, [card.sub, card.id, dispatch])    
+    // useEffect(() => {
+    //     dispatch(fetchComments({sub: card.sub, card: card.id}))
+    // }, [])    
 
-    const currentComments = commentsList[card.id];
+    //const currentComments = commentsList[card.id];
+    const currentComments = [{id: 1}, {id: 2}];
     
     const handleArrowUp = () => {
         (vote === 'down'|| vote === null) ? setVote('up') : setVote(null)

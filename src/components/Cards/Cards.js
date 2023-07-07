@@ -24,7 +24,6 @@ export default function Cards () {
     /*I've used useEffect because in the normal behiavor, there are many
     re-renders and here with useEffect avoid duplicateds and
     unnecesary dispatch's, this only will work in the initial first render (componentdidmountend)*/ 
-    console.log(actualCountriesList[actualCountry].subreddits[0].posts.length)
 
     useEffect(() => {    
         const currentTime = Date.now();
@@ -38,7 +37,7 @@ export default function Cards () {
              console.log('2')
             setLastApiCall(currentTime)
             }
-        }, [actualCountry, lastApiCall, coolDownTime, dispatch, actualCountriesList ])
+        }, [actualCountry])
     
     /* All cards of the different subreddit of the same country in one place */
     const {subreddits} = actualCountriesList[actualCountry]
