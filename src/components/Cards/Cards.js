@@ -37,7 +37,7 @@ export default function Cards () {
              console.log('2')
             setLastApiCall(currentTime)
             }
-        }, [actualCountry])
+        }, [actualCountry, dispatch, lastApiCall, actualCountriesList, coolDownTime])
     
     /* All cards of the different subreddit of the same country in one place */
     const {subreddits} = actualCountriesList[actualCountry]
