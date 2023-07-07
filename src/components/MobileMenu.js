@@ -8,7 +8,7 @@ export default function MobileMenu () {
 
 return (     
     <div  className="md:hidden"> 
-    <img onClick={() => {setMenu(!menu)}} className="mid:hidden w-5 h-5" 
+    <img alt='menu' onClick={() => {setMenu(!menu)}} className="mid:hidden w-5 h-5" 
     src={'https://i.ibb.co/Bfy56JM/menu-redditlatam.png'} />
 
     {Boolean(menu) && 

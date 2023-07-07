@@ -9,11 +9,14 @@ export function CardSkeleton () {
               
                 <section className="flex flex-col items-center col-span-1">
                     <img 
+                    alt='arrow-neutral'
                     className="w-11 h-9"
                     src='/arrows/redditlatam-arrow-neutral.svg'/>
                     <div className="w-1/2"><Skeleton style={{display: 'inline-block'}}/></div>
                    
-                    <img className="w-11 h-9 transform scale-y-[-1]" 
+                    <img 
+                    className="w-11 h-9 transform scale-y-[-1]" 
+                    alt='arrow-neutral'
                     src='/arrows/redditlatam-arrow-neutral.svg'/>
                 </section>
                 

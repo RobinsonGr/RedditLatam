@@ -24,16 +24,16 @@ export default function Card ({card}) {
     unnecesary dispatch's, this only will work in the initial first render (componentdidmountend)*/
     useEffect(() => {
         dispatch(fetchComments({sub: card.sub, card: card.id}))
-    }, [])    
+    }, [card.sub, card.id, dispatch])    
 
     const currentComments = commentsList[card.id];
     
     const handleArrowUp = () => {
-        (vote == 'down'|| vote == null) ? setVote('up') : setVote(null)
+        (vote === 'down'|| vote === null) ? setVote('up') : setVote(null)
     }
     
     const handleArrowDown = () => {
-        (vote == 'up' || vote == null) ? setVote('down') : setVote(null)
+        (vote === 'up' || vote === null) ? setVote('down') : setVote(null)
     }
 
 
@@ -47,19 +47,21 @@ export default function Card ({card}) {
                 
             <section className="col-span-1 cursor-pointer">
                 <img 
+                alt='arrow'
                 className="w-11 h-9"
                 onClick={handleArrowUp} 
                 src={ vote === 'up' ? arrows.up : arrows.neutral}/>
 
                 <p 
                 className={`font-bold text-center
-                ${vote == 'up' ? 'text-green-600' : vote == 'down' ? 'text-red-600' : null }`}>
+                ${vote === 'up' ? 'text-green-600' : vote === 'down' ? 'text-red-600' : null }`}>
 
-                {vote == 'up' ? (card.ups + 1) : vote == 'down' ? (card.ups - 1) : (card.ups)}</p>
+                {vote === 'up' ? (card.ups + 1) : vote === 'down' ? (card.ups - 1) : (card.ups)}</p>
 
                 <img className="w-11 h-9 transform scale-y-[-1]" 
+                alt='arrow-down'
                 onClick={handleArrowDown} 
-                src={ vote == 'down' ? arrows.down : arrows.neutral} />
+                src={ vote === 'down' ? arrows.down : arrows.neutral} />
             </section>
 
              {/* Card with title, img -- grid template was generate a bug when a image is clicked */}
@@ -68,7 +70,7 @@ export default function Card ({card}) {
                 <h1 className="text-base font-bold">{card.title}</h1>
                 {
                     Boolean(card.url) && (
-                        <img className='w-full h-auto' src={card.url}>
+                        <img className='w-full h-auto' alt={card.title} src={card.url}>
                         </img>
                     )
                 }

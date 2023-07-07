@@ -9,7 +9,7 @@ export default function Header () {
         <header className="col-span-2 w-full flex justify-between items-center px-8 py-4 "> 
             {/*Logo*/}
             <div className="flex items-center "> 
-            <img className="w-10 h-10" src={'https://i.ibb.co/1bzMShp/Reddit-Latam.png'} />
+            <img alt='redditLatam' className="w-10 h-10" src={'https://i.ibb.co/1bzMShp/Reddit-Latam.png'} />
             <p className="font-bold px-2 text-lg">Reddit<span className=" text-green-latam">Latam</span></p>
             </div>
 

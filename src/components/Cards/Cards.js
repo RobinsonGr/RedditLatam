@@ -38,7 +38,7 @@ export default function Cards () {
              console.log('2')
             setLastApiCall(currentTime)
             }
-        }, [actualCountry])
+        }, [actualCountry, lastApiCall, coolDownTime, dispatch, actualCountriesList ])
     
     /* All cards of the different subreddit of the same country in one place */
     const {subreddits} = actualCountriesList[actualCountry]
@@ -53,7 +53,18 @@ export default function Cards () {
     .filter(cardData => !cardData.text.includes('https'))
 
 
-   return (
+   return isPending ? (
+   <>
+         {
+            /*Showing skeleton loading 5 times (less that the original cards
+                for avoid the saturation)  */
+        [...Array(5)].map((_, i) => (
+            <CardSkeleton key={i}/>
+        ))
+    }
+   </>
+    
+   ) :  (
     <ul> 
     {allCardsOrdened.map(card => 
        (
@@ -65,17 +76,5 @@ export default function Cards () {
     }
     </ul>
 )
-//    isPending ? (
-//    <>
-//          {
-//             /*Showing skeleton loading 5 times (less that the original cards
-//                 for avoid the saturation)  */
-//         [...Array(5)].map((_, i) => (
-//             <CardSkeleton key={i}/>
-//         ))
-//     }
-//    </>
-    
-//    ) : 
 
 }
