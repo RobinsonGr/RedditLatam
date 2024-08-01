@@ -8,7 +8,8 @@ import { useEffect, useState } from "react"
 
 export default function Cards () {
     const [lastApiCall, setLastApiCall] = useState(0);
-    const coolDownTime = 3 *60 *1000;
+    //3 mn
+    const coolDownTime = 3 * 60 * 1000;
 
     const actualCountriesList = useSelector(selectCountries);
     const isPending = useSelector(selectIsLoading);
@@ -32,11 +33,13 @@ export default function Cards () {
             dispatch(fetchCountry({country: actualCountry, countryList: actualCountriesList})) 
             console.log('1')
             setLastApiCall(currentTime)
-        } else if (currentTime - lastApiCall > coolDownTime) {
-             dispatch(fetchCountry({country: actualCountry, countryList: actualCountriesList}))
-             console.log('2')
-            setLastApiCall(currentTime)
-            }
+            //More than 3 mintutes have passed since the last call so dispatch again (having already post)
+        } 
+        // else if (currentTime - lastApiCall > coolDownTime) {
+        //      dispatch(fetchCountry({country: actualCountry, countryList: actualCountriesList}))
+        //      console.log('2')
+        //     setLastApiCall(currentTime)
+        //     }
         }, [actualCountry, dispatch, lastApiCall, actualCountriesList, coolDownTime])
     
     /* All cards of the different subreddit of the same country in one place */
