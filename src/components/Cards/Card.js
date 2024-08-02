@@ -22,11 +22,11 @@ export default function Card ({card}) {
      I've used useEffect because in the normal behiavor, there are many
     re-renders and here with useEffect avoid duplicateds and
     unnecesary dispatch's, this only will work in the initial first render (componentdidmountend)*/
-    // useEffect(() => {
-    //     dispatch(fetchComments({sub: card.sub, card: card.id}))
-    // }, [card.id, card.sub, dispatch])    
+    useEffect(() => {
+        dispatch(fetchComments({sub: card.sub, card: card.id}))
+    }, [card.id, card.sub, dispatch])    
 
-    // const currentComments = commentsList[card.id];
+    const currentComments = commentsList[card.id];
     
     const handleArrowUp = () => {
         (vote === 'down'|| vote === null) ? setVote('up') : setVote(null)
@@ -78,7 +78,7 @@ export default function Card ({card}) {
                 <p>{card.text}</p>
             
                 <hr className="my-3"/>
-                {/* <div className="flex justify-between flex-wrap"> 
+                <div className="flex justify-between flex-wrap"> 
                     <p className="font-semibold text-green-latam">{card.author}</p>
                     {
                         Boolean(currentComments) && (
@@ -89,11 +89,11 @@ export default function Card ({card}) {
                            
                         )
                     } 
-                </div> */}
+                </div>
                 {
-                    //  commentsBox && (
-                    //     <CommentsList currentComments={currentComments}/>
-                    // )
+                     commentsBox && (
+                        <CommentsList currentComments={currentComments}/>
+                    )
                 }
 
                 

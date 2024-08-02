@@ -33,14 +33,14 @@ export default function Cards () {
             dispatch(fetchCountry({country: actualCountry, countryList: actualCountriesList})) 
             console.log('1')
             setLastApiCall(currentTime)
-            //More than 3 mintutes have passed since the last call so dispatch again (having already post)
         } 
-        // else if (currentTime - lastApiCall > coolDownTime) {
-        //      dispatch(fetchCountry({country: actualCountry, countryList: actualCountriesList}))
-        //      console.log('2')
-        //     setLastApiCall(currentTime)
-        //     }
-        }, [actualCountry, dispatch, lastApiCall, actualCountriesList, coolDownTime])
+        //More than 3 mintutes have passed since the last call so dispatch again (having already post)
+        else if (currentTime - lastApiCall > coolDownTime) {
+             dispatch(fetchCountry({country: actualCountry, countryList: actualCountriesList}))
+             console.log('2')
+            setLastApiCall(currentTime)
+            }
+        }, [actualCountry])
     
     /* All cards of the different subreddit of the same country in one place */
     const {subreddits} = actualCountriesList[actualCountry]
