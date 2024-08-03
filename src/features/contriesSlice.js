@@ -34,7 +34,10 @@ const initialState = {
             subreddits: [
                 { name: 'colombia', posts: [] },
                 { name: 'medellin', posts: [] },
-                { name: 'Bogota', posts: [] }
+                { name: 'Bogota', posts: [] },
+                { name: 'venezuela', posts: [] },
+                { name: 'ColombiaFinanciera', posts: [] },
+                { name: 'ColombiaReddit', posts: [] }
             ]
         },
         argentina: {
@@ -83,7 +86,8 @@ const initialState = {
             img: 'https://i.ibb.co/RvcttWk/uruguay.png',
             subreddits: [
                 { name: 'CharruaDevs', posts: [] },
-                { name: 'UruguayCirclejerk', posts: [] }
+                { name: 'UruguayCirclejerk', posts: [] },
+                { name: 'uruguay', posts: [] }
             ]
         }
     },

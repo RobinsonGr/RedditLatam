@@ -25,5 +25,9 @@ export const commentsSelector = (state) => {
     return state.commentsSlice
 }
 
+
+export const selectIsLoadingComments = (state) => state.commentsSlice.isPending;
+
+
 export default commentsSlice.reducer;
 

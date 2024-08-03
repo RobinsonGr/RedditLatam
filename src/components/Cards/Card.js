@@ -3,12 +3,16 @@ import { commentsSelector } from "../../features/commentsSlice";
 import { useEffect, useState } from "react"
 import { fetchComments } from "../../features/commentsSlice"
 import CommentsList from "../Comments/CommentsList";
+import { selectIsLoadingComments } from "../../features/commentsSlice";
 
 
 export default function Card ({card}) {
     const [vote, setVote] = useState(null)
     const [commentsBox, setCommentsBox] = useState(false)
- 
+    const [commentsFetched, setCommentsFetched] = useState(false)
+
+
+    const isLoadingComments = useSelector(selectIsLoadingComments)
     const commentsList = useSelector(commentsSelector)
     const dispatch = useDispatch();
     const arrows = {
@@ -22,11 +26,23 @@ export default function Card ({card}) {
      I've used useEffect because in the normal behiavor, there are many
     re-renders and here with useEffect avoid duplicateds and
     unnecesary dispatch's, this only will work in the initial first render (componentdidmountend)*/
-    useEffect(() => {
-        dispatch(fetchComments({sub: card.sub, card: card.id}))
-    }, [card.id, card.sub, dispatch])    
+    //    const handleCommentsToggle = () => {
+    //     if (!commentsFetched && !isLoadingComments) {
+    //         dispatch(fetchComments({ sub: card.sub, card: card.id }));
+    //         setCommentsFetched(true);
+    //     }
+    //     setCommentsBox(!commentsBox);
+    // };
 
     const currentComments = commentsList[card.id];
+
+    const handleCommentsToggle = () => {
+        if (!commentsFetched && !isLoadingComments) {
+            dispatch(fetchComments({ sub: card.sub, card: card.id }));
+            setCommentsFetched(true);
+        }
+        setCommentsBox(!commentsBox);
+    };
     
     const handleArrowUp = () => {
         (vote === 'down'|| vote === null) ? setVote('up') : setVote(null)
@@ -81,20 +97,22 @@ export default function Card ({card}) {
                 <div className="flex justify-between flex-wrap"> 
                     <p className="font-semibold text-green-latam">{card.author}</p>
                     {
-                        Boolean(currentComments) && (
-                            <div className="flex" onClick={() => setCommentsBox(!commentsBox)}>  
+                        
+                            <div className="flex" onClick={handleCommentsToggle}>  
                             <span className="mr-1" >💬</span>
-                            <p className="text-gray-500">{currentComments.length}</p>
+                            <p className="text-gray-500">+10</p>
                             </div>                     
                            
-                        )
+                        
                     } 
                 </div>
-                {
-                     commentsBox && (
-                        <CommentsList currentComments={currentComments}/>
-                    )
-                }
+            {commentsBox && (
+                currentComments ? (
+                    <CommentsList currentComments={currentComments} />
+                ) : (
+                    <p>Loading comments...</p>
+                ) 
+            )}
 
                 
             </section>

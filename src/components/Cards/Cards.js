@@ -51,7 +51,7 @@ export default function Cards () {
 
      /*Ordened by upvotes*/   
     const allCardsOrdened = allCountryCards.sort((a,b) => b.ups - a.ups)
-    .slice(0,20)
+    .slice(0,40)
     .filter(cardData => !cardData.text.includes('https'))
 
 
