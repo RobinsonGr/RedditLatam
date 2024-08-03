@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom"
 import { selectCountries, fetchCountry } from "../../features/contriesSlice"
 import { selectIsLoading } from "../../features/contriesSlice"
 import { CardSkeleton } from "./CardSkeleton"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
+
 
 export default function Cards () {
     const [lastApiCall, setLastApiCall] = useState(0);
@@ -40,19 +41,27 @@ export default function Cards () {
              console.log('2')
             setLastApiCall(currentTime)
             }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [actualCountry])
     
     /* All cards of the different subreddit of the same country in one place */
     const {subreddits} = actualCountriesList[actualCountry]
-    const allCountryCards = []
-    subreddits.forEach(({posts}) => {
-        posts.forEach(card => allCountryCards.push(card))
-        })
-
+  
      /*Ordened by upvotes*/   
-    const allCardsOrdened = allCountryCards.sort((a,b) => b.ups - a.ups)
-    .slice(0,40)
-    .filter(cardData => !cardData.text.includes('https'))
+     const allCountryCards = useMemo(() => {
+        const cards = [];
+        subreddits.forEach(({posts}) => {
+          posts.forEach(card => cards.push(card));
+        });
+        return cards;
+      }, [subreddits]);
+      
+      const allCardsOrdened = useMemo(() => {
+        return allCountryCards
+          .sort((a,b) => b.ups - a.ups)
+          .slice(0,40)
+          .filter(cardData => !cardData.text.includes('https'));
+      }, [allCountryCards]);
 
 
    return isPending ? (
